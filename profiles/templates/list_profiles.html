@@ -1,0 +1,23 @@
+{% include 'header.html' %}
+<h1>Profiles</h1><br>
+
+{% if not profs %}
+    No profiles found.
+{% else %}
+    <table>
+        <thead>
+            <tr>
+                <th>Profile Name</th>
+                <th>Username</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profile in profs %}
+                <tr>
+                    <td><a href="{{ url_for('profiles.profile', profile_name=profile.profile_name) }}">{{ profile.profile_name }}</a></td>
+                    <td>{{ profile.username }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

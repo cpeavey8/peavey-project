@@ -1,0 +1,27 @@
+<header>
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a><br>
+        <br>
+        {% if current_user.is_authenticated %}
+
+            <span><b>Profiles</b> |</span>
+            {% if current_user.profile %}
+                
+            {% else %}
+                <a href="{{ url_for('profiles.create_profile') }}">Create Profile</a><span> |</span>
+                <a href="{{ url_for('profiles.list_profiles') }}">View Profiles</a><br>
+            {% endif %}
+            <span><b>Users</b> |</span>
+            {% if current_user.admin %}
+            <a href="{{ url_for('accounts.create') }}">Create User</a><span> |</span>
+            <a href="{{ url_for('accounts.users') }}">View Users</a><br>
+            {% endif %}
+            <span><b>Account</b> |</span>
+            <a href="{{ url_for('accounts.user_profiles', username=current_user.username) }}">My User Page</a><span> |</span>
+            <a href="{{ url_for('accounts.logout') }}">Logout</a>
+
+        {% else %}
+            <a href="{{ url_for('accounts.login') }}">Login</a>
+        {% endif %}
+    </nav>
+</header>

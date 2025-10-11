@@ -1,0 +1,17 @@
+<h1>Create User</h1><br>
+<form action="{{ url_for('accounts.create') }}" method="POST">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <div>
+        <label for="admin">Admin:</label>
+        <input type="checkbox" id="admin" name="admin">
+    <div>
+        <button type="submit">Create User</button>
+    </div>
+</form>

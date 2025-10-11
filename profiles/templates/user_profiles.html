@@ -1,0 +1,19 @@
+    {% set _messages = get_flashed_messages() %}
+    {% if _messages %}
+      <ul>
+        {% for message in _messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <h1>{{ username }}'s Profiles</h1>
+
+    {% if profs %}
+      {# Keep these as the last <a> elements so tests' refs[-2:] match #}
+      {% for p in profs %}
+        <a href="/profiles/{{ p.profile_name }}">{{ p.profile_name }}</a>
+      {% endfor %}
+    {% else %}
+      <p>No profiles found.</p>
+    {% endif %}

@@ -1,0 +1,38 @@
+{% set _messages = get_flashed_messages() %}
+{% if _messages %}
+<ul>
+  {% for message in _messages %}
+    <li>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% include 'header.html' %}
+{% if prof %}
+<a href="/profiles/">Back</a>
+<table>
+  <tr>
+    <td>{{ prof.profile_name }}</td>
+    <td>{{ prof.username }}</td>
+  </tr>
+</table>
+
+<form action="{{ url_for('profiles.add_skill', profile_name=prof.profile_name) }}" method="POST">
+  <input type="hidden" name="profile_id" value="{{ prof.id }}">
+  <input type="text" id="skill" name="skill" placeholder="Skill" required>
+  <button type="submit">Add Skill</button>
+</form>
+
+<ul name="skills">
+  {% if prof.skills %}
+    {% for s in prof.skills %}
+      <li>{{ s }}</li>
+    {% endfor %}
+  {% else %}
+    <li>no skills yet</li>
+  {% endif %}
+</ul>
+
+{% else %}
+<p>No profile found.</p>
+{% endif %}
